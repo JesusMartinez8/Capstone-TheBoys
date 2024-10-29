@@ -1,0 +1,148 @@
+/* General Styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Navigation Bar */
+  .nav-bar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start; 
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 5px;
+    background-color: #f0f0f0;
+    z-index: 2;
+    height: 40px;
+  }
+  
+  .logo {
+    height: 80px; /* Adjust logo height to fit the nav bar */
+    width: auto; /* Keep aspect ratio */
+    margin-right: 20px; /* Add some space between logo and next element */
+  }
+  
+  .menu-icon {
+    height: 45px; /* Adjust logo height to fit the nav bar */
+    width: 30px; /* Keep aspect ratio */
+    margin-right: 20px; /* Add some space between logo and next element */
+  }
+  
+  /* Left Panel with Buttons */
+  /* Transparent Box Styling */
+.transparent-box {
+    position: absolute;
+    top: 100px; /* Adjust based on where you want it */
+    left: 20px;
+    padding: 20px;
+    width: 250px;
+    background-color: rgba(255, 255, 255, 0.8); /* Light shade with transparency */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    z-index: 2; /* To make sure it stays above the map */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .controls {
+    width: 100%;
+    max-width: 300px; /* Limit the width of the input fields */
+    padding: 10px; /* Add some padding for better appearance */
+    margin-bottom: 10px; /* Space between the inputs */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    font-size: 16px; /* Font size */
+    outline: none; /* Remove the outline on focus */
+  }
+  
+  .controls:focus {
+    border-color: #4CAF50; /* Change border color when focused */
+    box-shadow: 0 2px 6px rgba(76, 175, 80, 0.4); /* Add shadow on focus */
+  }
+
+
+  .btn {
+    background-color: white;
+    padding: 15px;
+    border: none;
+    margin: 10px 0;
+    width: 150px;
+    font-size: 18px;
+    text-align: left;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-findme {
+    background-color: #3498db; /* Blue background */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px; /* Add space between input and button */
+    cursor: pointer;
+    margin-right: 20px;
+  }
+  
+  .btn-findme:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+  }
+  
+  .icon {
+    float: right;
+  }
+  
+  /* Preview and Start button customization */
+.btn-preview {
+    background-color: #4CAF50; /* Green color for Preview */
+    color: white;
+    text-align: center;
+    margin-bottom: 20px; 
+  }
+  
+  .btn-start {
+    background-color: #3e8e41; /* Darker green for Start */
+    color: white;
+    text-align: center;
+  }
+  
+  /* Map Section */
+  #map {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Bottom Buttons */
+  .bottom-panel {
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+    display: flex;
+    z-index: 2;
+  }
+  
+  .btn-preview, .btn-start {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border: none;
+    margin-right: 20px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .btn-start {
+    background-color: #3e8e41;
+  }
+  
+  
