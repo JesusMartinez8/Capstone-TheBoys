@@ -242,3 +242,86 @@ function startAtMidpoint() {
     alert("Please calculate the midpoint first by clicking 'Find Midpoint'.");
   }
 }
+
+//define checkboxes for types of locations
+const libraryCheckbox = document.getElementById('library');
+const cafeCheckbox = document.getElementById('cafe');
+const restaurantCheckbox = document.getElementById('restaurant');
+const nightlifeCheckbox = document.getElementById('nightlife');
+
+let markers = []; // Array to hold all markers
+
+// Function to clear all markers from the map
+function clearMarkers() {
+    for (let marker of markers) {
+        marker.setMap(null);
+    }
+    markers = [];
+}
+
+// Function to add markers for a specific place type around the midpoint
+function addMarkersForType(type) {
+    if (!midpoint) return;
+
+    const service = new google.maps.places.PlacesService(map);
+    service.nearbySearch({
+        location: midpoint,
+        radius: midpointCircle.getRadius(), //use the radius from the circle
+        type: type.toLowerCase() //place type in lowercase, e.g., 'cafe', 'restaurant'
+    }, function(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (let place of results) {
+                const marker = new google.maps.Marker({
+                    map: map,
+                    position: place.geometry.location,
+                    title: place.name,
+                    icon: {
+                        url: `http://maps.google.com/mapfiles/ms/icons/${getMarkerColor(type)}-dot.png`
+                    }
+                });
+                markers.push(marker);
+            }
+        } else {
+            console.error("PlacesService failed due to: " + status);
+        }
+    });
+}
+
+//function to determine marker color based on type
+function getMarkerColor(type) {
+    switch (type.toLowerCase()) {
+        case 'library': return 'blue';
+        case 'cafe': return 'red';
+        case 'restaurant': return 'green';
+        case 'night life': return 'purple';
+        default: return 'yellow';
+    }
+}
+
+//function to update markers based on selected preferences
+function updateMarkers() {
+    clearMarkers();
+
+    //add markers for each checked type
+    if (libraryCheckbox.checked) {
+        addMarkersForType('Library');
+    }
+    if (cafeCheckbox.checked) {
+        addMarkersForType('Cafe');
+    }
+    if (restaurantCheckbox.checked) {
+        addMarkersForType('Restaurant');
+    }
+    if (nightlifeCheckbox.checked) {
+        addMarkersForType('Night Club'); //
+    }
+}
+
+//attach change event listeners to checkboxes
+[libraryCheckbox, cafeCheckbox, restaurantCheckbox, nightlifeCheckbox].forEach(checkbox => {
+    checkbox.addEventListener('change', updateMarkers);
+});
+
+//initial call to display default markers
+updateMarkers();
+
