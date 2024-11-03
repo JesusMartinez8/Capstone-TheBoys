@@ -26,6 +26,17 @@ function initMap() {
 
   geocoder = new google.maps.Geocoder();
   window.map = map;
+
+  //google places autocomplete on input fields
+  var location1Input = document.getElementById("location1");
+  var location2Input = document.getElementById("location2");
+  
+  var autocomplete1 = new google.maps.places.Autocomplete(location1Input);
+  var autocomplete2 = new google.maps.places.Autocomplete(location2Input);
+
+  //optional set fields to avoid unnecessary data
+  autocomplete1.setFields(["formatted_address", "geometry"]);
+  autocomplete2.setFields(["formatted_address", "geometry"]);
 }
 
 // Function to find the user's current location and update the first input field
