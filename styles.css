@@ -1,162 +1,242 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body, html {
-    height: 100%;
-    margin: 0;
-    font-family: "Jaro", sans-serif;
-    background: #f0f0f0;
-  }
-  
-  /* Make sure the page takes up full height and width */
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #e5e5e5;
-    height: 100vh; /* Full height */
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: "Jaro", sans-serif;
+  background: #f0f0f0;
+}
+/* Make sure the page takes up full height and width */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+  height: 100vh; /* Full height */
+}
+
+.login-container {
+  display: flex;
+  width: 100%;
+  max-width: none;
+  height: 100vh;
+  background-color: white;
+  border-radius: 0;
+}
+
+
+.divider {
+  width: 3px;
+  background-color: black;
+  height: 100%;
+}
+
+/* Form Section */
+.form-section {
+  flex: 1;
+  background-color: #d4f0e9;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-width: 300px;
+  height: 100%;
+}
+
+.form-section h1 {
+  font-family: "Jaro", sans-serif;
+  font-size: 2.5rem;
+  margin-top: 1rem;
+  margin-bottom: 0.75rem;
+  color: #000;
+}
+
+.form-section label {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+  color: #333;
+  display: block;
+  width: 350px;
+}
+
+input[type="email"], input[type="password"], input[type="text"] {
+  width: 100%;
+  max-width: 350px;
+  padding: 12px;
+  margin-bottom: 1.75rem;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 1rem;
+}
+
+/* Button Styles */
+.btn-signin, .btn-create-account {
+  display: block;
+  text-align: center;
+  width: 100%;
+  max-width: 350px;
+  padding: 12px;
+  border-radius: 25px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-signin {
+  background-color: #349f89;
+  color: white;
+}
+
+.btn-signin:hover {
+  background-color: #298b77; 
+  transform: scale(1.05);
+}
+
+.btn-create-account {
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-create-account:hover {
+  background-color: #333; 
+}
+
+
+.forgot-password {
+  display: block;
+  text-align: center;
+  margin: 10px 0; 
+  font-size: 0.9rem;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+  color: #0056b3; 
+}
+.btn-signin, .btn-create-account, .btn-back {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.btn-signin:hover, .btn-create-account:hover, .btn-back:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+}
+
+/* Signup Page */
+.btn-signin, .btn-create-account, .btn-back,.btn-signup {
+  display: block;
+  text-align: center;
+  width: 100%;
+  max-width: 350px;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1.75rem;
+}
+
+.btn-signin, .btn-signup {
+  background-color: #349f89;
+  color: white;
+  font-family: "Jaro", sans-serif;
+}
+.btn-signup:hover {
+  background-color: #298b77; 
+  transform: scale(1.05); 
+}
+
+.btn-create-account {
+  background-color: black;
+  color: white;
+  text-decoration: none;
+}
+
+.btn-back {
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-back:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+}
+
+
+/* Map Section */
+.map-section {
+  flex: 1;
+  background: url('map.png') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+.map-section .logo {
+  width: 500px;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3)); 
+}
+
+.map-section h2 {
+  font-size: 2.5rem;
+  color: #333;
+  font-family: "Jaro", sans-serif;
+  font-weight: bold;
+}
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 768px) {
   .login-container {
-    display: flex;
-    width: 100%; /* Full width */
-    max-width: none; /* Disable the max width so it spans fully */
-    height: 100vh; /* Full height */
-    background-color: white;
-    border-radius: 0;
+    flex-direction: column;
+    height: auto;
   }
-  
-  /* Form Section */
+
+  .divider {
+    display: none; 
+  }
+
+  .form-section, .map-section {
+    width: 100%;
+    min-width: unset;
+    padding: 2rem;
+  }
+
   .form-section {
-    flex: 1;
-    background-color: #e5e5e5;
-    padding: 3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    min-width: 300px;
-    height: 100%; /* Stretch to full height */
+    order: 2;
   }
-  
-  .form-section h1 {
-    font-family: "Jaro", sans-serif;
-    font-size: 2.5rem;
-    margin-top:1rem;
-    margin-bottom: 0.75rem;
-    color: #000;
-  }
-  
-  .form-section label {
-    font-size: 1.1rem;
-    margin-bottom: 0.25rem;
-    color: #333;
-    display: block;
-    width: 350px;
-  }
-  
-  input[type="email"], input[type="password"], input[type="text"] {
-    width: 100%;
-    max-width: 350px;
-    padding: 12px;
-    margin-bottom: 1.5rem;
-    border-radius: 25px;
-    border: 1px solid #ccc;
-    outline: none;
-    font-size: 1rem;
-  }
-  
-  .btn-signin, .btn-create-account, .btn-back,.btn-signup {
-    display: block;
-    text-align: center;
-    width: 100%;
-    max-width: 350px;
-    padding: 12px;
-    border-radius: 25px;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-bottom: 1rem;
-  }
-  
-  .btn-signin, .btn-signup {
-    background-color: #349f89;
-    color: white;
-    font-family: "Jaro", sans-serif;
-  }
-  
-  .btn-create-account {
-    background-color: black;
-    color: white;
-    text-decoration: none;
-  }
-  
-  .btn-back {
-    background-color: black;
-    color: white;
-    text-decoration: none;
-  }
-  
-  /* Map Section */
+
   .map-section {
-    flex: 1;
-    background: url('map.png') no-repeat center center;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100%; /* Full height */
+    order: 1;
+    height: 300px;
   }
-  
+
+  input[type="email"], input[type="password"], input[type="text"] {
+    max-width: 100%;
+  }
+
+  .btn-signin, .btn-create-account {
+    max-width: 100%;
+  }
+
   .map-section .logo {
-    width: 500px;
-    margin-bottom: 1.5rem;
+    width: 80px;
   }
-  
-  .map-section h2 {
-    font-size: 2.5rem;
-    color: #333;
-    font-family: "Jaro", sans-serif;
-    font-weight: bold;
-  }
-  
-  /* Media Queries for Smaller Screens */
-  @media (max-width: 768px) {
-    .login-container {
-      flex-direction: column;
-      height: auto;
-    }
-  
-    .form-section, .map-section {
-      width: 100%;
-      min-width: unset;
-      padding: 2rem;
-    }
-  
-    .form-section {
-      order: 2;
-    }
-  
-    .map-section {
-      order: 1;
-      height: 300px;
-    }
-  
-    input[type="email"], input[type="password"], input[type="text"] {
-      max-width: 100%;
-    }
-  
-    .btn-signin, .btn-create-account, .btn-back {
-      max-width: 100%;
-    }
-  
-    .map-section .logo {
-      width: 80px;
-    }
-  }
-  
+}
+
