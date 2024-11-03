@@ -1,7 +1,7 @@
 var directionsService;
 var directionsRenderer;
 var geocoder;
-var midpoint; // Store the midpoint globally
+var midpoint;
 
 // Initialize the Google Map
 function initMap() {
@@ -11,10 +11,19 @@ function initMap() {
   };
 
   var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+  
   directionsService = new google.maps.DirectionsService();
+  
+  // Custom route line appearance
   directionsRenderer = new google.maps.DirectionsRenderer({
-    map: map
+    map: map,
+    polylineOptions: {
+      strokeColor: "#2c9a84",  // Custom color for the route
+      strokeOpacity: 1.8,       // Line opacity
+      strokeWeight: 6           // Line thickness
+    }
   });
+
   geocoder = new google.maps.Geocoder();
   window.map = map;
 }
@@ -47,21 +56,31 @@ function findMidpoint() {
   geocoder.geocode({ address: location1 }, function(results1, status1) {
     if (status1 === "OK") {
       var latLng1 = results1[0].geometry.location;
+      
+      // Custom icon for the starting point (A)
       var marker1 = new google.maps.Marker({
         position: latLng1,
         map: map,
         title: "Location 1",
-        label: "A"
+        icon: {
+           // Blue marker
+          scaledSize: new google.maps.Size(40, 40)                        // Custom size
+        }
       });
 
       geocoder.geocode({ address: location2 }, function(results2, status2) {
         if (status2 === "OK") {
           var latLng2 = results2[0].geometry.location;
+          
+          // Custom icon for the ending point (B)
           var marker2 = new google.maps.Marker({
             position: latLng2,
             map: map,
             title: "Location 2",
-            label: "B"
+            icon: {
+               // Red marker
+              scaledSize: new google.maps.Size(40, 40)                       // Custom size
+            }
           });
 
           calculateAndDisplayRoute(latLng1, latLng2);
@@ -75,7 +94,8 @@ function findMidpoint() {
             map: map,
             title: "Midpoint",
             icon: {
-              url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+              url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
+              scaledSize: new google.maps.Size(40, 40)
             }
           });
 
@@ -111,17 +131,14 @@ function calculateAndDisplayRoute(latLng1, latLng2) {
 function startAtMidpoint() {
   if (midpoint) {
     if (navigator.geolocation) {
-      // Get the user's current location
       navigator.geolocation.getCurrentPosition(function(position) {
         var currentLocation = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
 
-        // Construct a URL to open Google Maps with the directions
         var directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${currentLocation.lat},${currentLocation.lng}&destination=${midpoint.lat},${midpoint.lng}&travelmode=driving`;
 
-        // Open the URL in a new tab to start directions in Google Maps
         window.open(directionsUrl, '_blank');
       }, function() {
         alert("Failed to get your current location. Please try again.");
