@@ -148,4 +148,19 @@ body, html {
   color: #7D8A8B; /* Placeholder color */
 }
 
+/*slider container UPDATE THIS*/
+.slider-container {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  z-index: 10 
+}
+#radiusSlider {
+  width: 100%;
+}
+
   
