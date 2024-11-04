@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <link rel="stylesheet" href="profile.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+  <div class="top"></div>
+
+  <div class="container">
+    <div class="header">
+      <h1>USER 001</h1>
+      <div class="home">
+        <a href="landing.html"><i class='bx bx-home-alt'></i></a>
+        <div class="message">
+            <i class='bx bx-message'></i>
+          </div>
+       </div>
+    </div>
+
+    <div class="dropdown" onclick="toggleDropdown()">
+      <span id="current-tab">Recently Visited</span> &#x25BC;
+      <div class="dropdown-content">
+        <a href="#" onclick="showTab('tab-recently-visited', 'Recently Visited')">Recently Visited</a>
+        <a href="#" onclick="showTab('tab-messages', 'Messages')">Messages</a>
+        <a href="#" onclick="showTab('tab-favorites', 'Favorites')">Favorites</a>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div id="tab-recently-visited" class="tab">
+        <p>Recently Visited Locations</p>
+      </div>
+      <div id="tab-messages" class="tab">
+        <p>Your Messages</p>
+      </div>
+      <div id="tab-favorites" class="tab">
+        <p>Your Favorite Locations</p>
+      </div>
+    </div>
+  
+</body>
+</html>
