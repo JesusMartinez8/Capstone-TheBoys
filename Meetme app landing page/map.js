@@ -60,70 +60,6 @@ function findMe() {
   }
 }
 
-/*
-// Function to calculate and display the midpoint, markers, and route
-function findMidpoint() {
-  var location1 = document.getElementById("location1").value;
-  var location2 = document.getElementById("location2").value;
-
-  geocoder.geocode({ address: location1 }, function(results1, status1) {
-    if (status1 === "OK") {
-      var latLng1 = results1[0].geometry.location;
-      
-      // Custom icon for the starting point (A)
-      var marker1 = new google.maps.Marker({
-        position: latLng1,
-        map: map,
-        title: "Location 1",
-        icon: {
-           // Blue marker
-          scaledSize: new google.maps.Size(40, 40)                        // Custom size
-        }
-      });
-
-      geocoder.geocode({ address: location2 }, function(results2, status2) {
-        if (status2 === "OK") {
-          var latLng2 = results2[0].geometry.location;
-          
-          // Custom icon for the ending point (B)
-          var marker2 = new google.maps.Marker({
-            position: latLng2,
-            map: map,
-            title: "Location 2",
-            icon: {
-               // Red marker
-              scaledSize: new google.maps.Size(40, 40)                       // Custom size
-            }
-          });
-
-          calculateAndDisplayRoute(latLng1, latLng2);
-
-          var midpointLat = (latLng1.lat() + latLng2.lat()) / 2;
-          var midpointLng = (latLng1.lng() + latLng2.lng()) / 2;
-          midpoint = { lat: midpointLat, lng: midpointLng };
-
-          var midpointMarker = new google.maps.Marker({
-            position: midpoint,
-            map: map,
-            title: "Midpoint",
-            icon: {
-              url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
-              scaledSize: new google.maps.Size(40, 40)
-            }
-          });
-
-          map.setCenter(midpoint);
-        } else {
-          alert("Geocode was not successful for the second location: " + status2);
-        }
-      });
-    } else {
-      alert("Geocode was not successful for the first location: " + status1);
-    }
-  });
-}
-*/
-
 function findMidpoint() {
   var location1 = document.getElementById("location1").value;
   var location2 = document.getElementById("location2").value;
@@ -136,7 +72,7 @@ function findMidpoint() {
         if (status2 === "OK") {
           var latLng2 = results2[0].geometry.location;
 
-          // Calculate the route and place the midpoint along it
+          //calculate the route and find the midpoint on the route path
           var request = {
             origin: latLng1,
             destination: latLng2,
@@ -147,38 +83,34 @@ function findMidpoint() {
             if (status === "OK") {
               directionsRenderer.setDirections(result);
 
-              // Find midpoint based on route legs and steps
               var route = result.routes[0];
-              var totalDistance = 0;
-              var halfwayDistance = route.legs[0].distance.value / 2;
+              var path = route.overview_path;
 
-              for (let i = 0; i < route.legs[0].steps.length; i++) {
-                var step = route.legs[0].steps[i];
-                totalDistance += step.distance.value;
+              //find the midpoint of the overview_path
+              var midpointIndex = Math.floor(path.length / 2);
+              var midpoint = path[midpointIndex];
 
-                if (totalDistance >= halfwayDistance) {
-                  midpoint = step.end_location;
-                  break;
+              //position the circle on the calculated midpoint
+              if (midpoint) {
+                if (midpointCircle) {
+                  midpointCircle.setCenter(midpoint);
+                } else {
+                  midpointCircle = new google.maps.Circle({
+                    strokeColor: "#FF0000",
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: "#FF0000",
+                    fillOpacity: 0.35,
+                    map: map,
+                    center: midpoint,
+                    radius: parseInt(document.getElementById("radiusSlider").value) || 1000
+                  });
                 }
-              }
 
-              // Position circle on the calculated route midpoint
-              if (midpointCircle) {
-                midpointCircle.setCenter(midpoint);
+                map.setCenter(midpoint);
               } else {
-                midpointCircle = new google.maps.Circle({
-                  strokeColor: "#FF0000",
-                  strokeOpacity: 0.8,
-                  strokeWeight: 2,
-                  fillColor: "#FF0000",
-                  fillOpacity: 0.35,
-                  map: map,
-                  center: midpoint,
-                  radius: parseInt(document.getElementById("radiusSlider").value) || 1000
-                });
+                alert("Could not determine midpoint along the route.");
               }
-
-              map.setCenter(midpoint);
             } else {
               alert("Could not display directions due to: " + status);
             }
@@ -192,7 +124,6 @@ function findMidpoint() {
     }
   });
 }
-
 
 // Function to update the radius based on slider input
 document.getElementById("radiusSlider").addEventListener("input", function () {
