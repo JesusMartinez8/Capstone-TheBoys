@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
   <div class="login-container">
@@ -21,29 +22,41 @@
         <input type="text" id="lastName" placeholder="Last Name" required>
 
         <label for="emailSignup">Email</label>
-        <input type="email" id="emailSignup" placeholder="Email" required>
+        <div class="form-group">
+          <i class='bx bx-user'></i>
+          <input type="email" id="emailSignup" placeholder="Email" required>
+        </div>
 
         <label for="confirmEmail">Re-enter Email</label>
-        <input type="email" id="confirmEmail" placeholder="Re-enter Email" required>
+        <div class="form-group">
+          <i class='bx bx-user'></i>
+          <input type="email" id="confirmEmail" placeholder="Re-enter Email" required>
+        </div>
 
         <label for="passwordSignup">Password</label>
-        <input type="password" id="passwordSignup" placeholder="Password" required>
+        <div class="form-group">
+          <i class='bx bx-lock'></i>
+          <input type="password" id="passwordSignup" placeholder="Password" required>
+        </div>
 
         <label for="confirmPassword">Re-enter Password</label>
-        <input type="password" id="confirmPassword" placeholder="Re-enter Password" required>
+        <div class="form-group">
+          <input type="password" id="confirmPassword" placeholder="Re-enter Password" required>
+        </div>
 
         <button type="submit" class="btn-signup">Create Account</button>
       </form>
-             <!-- Back to Login Button -->
+      <!-- Back to Login Button -->
       <a href="index.html" class="btn-back">Back to Login</a>
     </div>
-    
     
     <div class="divider"></div>
 
     <div class="map-section">
-      <img src="MeetMeHalfway.png" alt="Meet Me Halfway Logo" class="logo">
-      <h2>MEET ME HALFWAY</h2>
+      <h2 class="map-title">MEET ME HALFWAY</h2>
+      <div class="animated-description">
+        <p id="typing-text">Create an account on Meet Me Halfway to find the best midpoints!</p>
+      </div>
     </div>
   </div>
 </body>
