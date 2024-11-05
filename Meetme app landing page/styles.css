@@ -7,7 +7,7 @@
 
 body, html {
   height: 100%;
-  font-family: "Jaro", sans-serif;
+  font-family:Arial, Helvetica, sans-serif;
   background-color: #f0f0f0;
 }
 
@@ -64,11 +64,10 @@ body, html {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font-family: "Jaro", sans-serif; /* Ensures the font is consistent */
   
 }
 .transparent-box, .transparent-box * {
-  font-family: "Jaro", sans-serif !important;
+  font-family:Arial, Helvetica, sans-serif;
 }
 
 /* Button Styling */
@@ -281,4 +280,3 @@ body, html {
   height: 24px;
   vertical-align: middle;
 }
-
