@@ -44,8 +44,6 @@ body, html {
   cursor: pointer;
 }
 
-
-
 /* Centering the Title */
 .animated-title {
   flex: 1;
@@ -66,6 +64,11 @@ body, html {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  font-family: "Jaro", sans-serif; /* Ensures the font is consistent */
+  
+}
+.transparent-box, .transparent-box * {
+  font-family: "Jaro", sans-serif !important;
 }
 
 /* Button Styling */
@@ -151,7 +154,7 @@ body, html {
 /* Slider Container Styling */
 .slider-container {
   position: absolute;
-  top: 50%;
+  top: 40%;
   right: 20px;
   background-color: white;
   padding: 10px;
@@ -178,11 +181,11 @@ body, html {
 @keyframes meet-in-middle {
   0% {
     letter-spacing: 0.7em;
-    opacity: 0;
+    opacity: 0.5;
   }
   50% {
     letter-spacing: 0.3em;
-    opacity: 0.7;
+    opacity: 1.0;
   }
   100% {
     letter-spacing: normal;
@@ -264,3 +267,18 @@ body, html {
 }
 
   
+/* Styling for Checkbox Labels with Icons */
+.slider-container label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.icon {
+  width: 24px; /* Adjust icon size as needed */
+  height: 24px;
+  vertical-align: middle;
+}
+
