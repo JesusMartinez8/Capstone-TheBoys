@@ -64,32 +64,44 @@ body, html {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  animation: fadeInSlide 1s ease-out;
   
 }
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .transparent-box, .transparent-box * {
   font-family:Arial, Helvetica, sans-serif;
 }
 
 /* Button Styling */
 .btn {
-  background-color: #2a7566;
+  background: linear-gradient(135deg, #2a7566, #196455);
   color: #ffffff;
   padding: 15px;
-  border: 1px solid #ffffff;
-  width: 100%;
+  border: none;
   font-size: 1rem;
   border-radius: 25px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .btn:hover {
-  background-color: #28564E;
-  border-color: #1E3C3B;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .btn i {
@@ -136,35 +148,98 @@ body, html {
 /* Input Field Styling */
 .controls {
   padding: 12px 15px;
-  border: 1px solid #2A4F4E;
+  border: 1px solid #dcdcdc;
   border-radius: 25px;
   font-size: 1rem;
   width: 100%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px;
-  background-color: #f9f9f9;
-  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.controls:focus {
+  border-color: #2a7566;
+  box-shadow: 0 0 5px rgba(42, 117, 102, 0.5);
 }
 
 .controls::placeholder {
   color: #7D8A8B;
 }
 
+
 /* Slider Container Styling */
 .slider-container {
   position: absolute;
-  top: 40%;
-  right: 20px;
-  background-color: white;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  z-index: 10;
+  top: 40%;  
+  right: 20px; 
+  background-color: #f9f9f9; 
+  padding: 10px 15px;  
+  border: 2px solid #dcdcdc;  
+  border-radius: 8px;  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+  z-index: 10;  
+  gap: 10px;  
+  width: 220px;  
+  transition: box-shadow 0.3s ease;  
 }
 
-#radiusSlider {
-  width: 100%;
+.slider-container h4 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #2a7566;
+  font-weight: bold;
 }
+
+.slider-container:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+#radiusSlider {
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(90deg, #2a7566, #196455);
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#radiusSlider::-moz-range-thumb, 
+#radiusSlider::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #ffffff;
+  border: 2px solid #2a7566;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#radiusSlider::-moz-range-thumb:hover, 
+#radiusSlider::-webkit-slider-thumb:hover {
+  background-color: #28564E;
+  transform: scale(1.2);
+}
+
+#radiusSlider::-moz-range-track, 
+#radiusSlider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(90deg, #2a7566, #196455);
+  border-radius: 5px;
+}
+
+#radiusSlider:focus {
+  outline: 2px solid #28564E; 
+  outline-offset: 2px;
+}
+
+
+
 
 /* Animated Title Styling */
 .animated-title {
@@ -208,12 +283,14 @@ body, html {
   border: 2px solid #dcdcdc;
   border-radius: 50%;
   padding: 5px;
-  transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .transportation-icons i:hover {
-  border-color: #b0b0b0;
-  background-color: #f0f0f0;
+  color: #ffffff;
+  background-color: #2a7566;
+  border-color: #196455;
+  transform: scale(1.1);
 }
 
 .transportation-icons i.selected {
@@ -223,46 +300,58 @@ body, html {
 
 /* Spinner Styling */
 .spinner {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   border: 8px solid #f3f3f3;
   border-top: 8px solid #2a7566;
+  border-right: 8px solid #196455;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   animation: spin 1s linear infinite;
-  display: none;
-  z-index: 9999;
 }
 
 @keyframes spin {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
-
 /* Notification Bar Styling */
 .notification-bar {
   position: fixed;
   top: 70px;
   right: 20px;
-  width: 250px;
-  background-color: #196455;
+  width: 300px;
+  background: linear-gradient(135deg, #196455, #28564E);
   color: #fff;
   text-align: center;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 0.9rem;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 1rem;
   display: none;
   z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .notification-bar .progress-bar {
   width: 0%;
-  height: 5px;
-  background-color: #ffffff;
+  height: 6px;
+  background: #ffffff;
   transition: width 5s linear;
+  border-radius: 3px;
 }
 
   
@@ -270,13 +359,47 @@ body, html {
 .slider-container label {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 10px;
-  font-size: 1.1rem;
+  gap: 10px; 
+  font-size: 0.9rem;  
+  cursor: pointer;
+  background-color: #ffffff;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  
 }
 
-.icon {
-  width: 24px; /* Adjust icon size as needed */
-  height: 24px;
-  vertical-align: middle;
+.slider-container label:hover {
+  background-color: rgba(42, 117, 102, 0.1); 
+  transform: translateY(-3px); 
 }
+
+.slider-container label input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #2a7566;
+  border-radius: 4px;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.slider-container label input[type="checkbox"]:checked {
+  background-color: #2a7566;
+  border-color: #28564E;
+  box-shadow: 0 0 4px rgba(42, 117, 102, 0.5);
+}
+
+/* Icon Styling */
+.icon {
+  width: 22px; 
+  height: 22px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.slider-container label:hover .icon {
+  transform: scale(1.1);  
+  filter: brightness(1.2); 
+}
+
