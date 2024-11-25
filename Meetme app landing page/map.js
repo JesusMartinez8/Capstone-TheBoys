@@ -278,3 +278,72 @@ function updateRadiusDisplay() {
   }
 }
 
+//function to add markers for a specific place type around the midpoint
+function addMarkersForType(type) {
+  if (!midpoint) return;
+
+  const service = new google.maps.places.PlacesService(map);
+  service.nearbySearch(
+    {
+      location: midpoint,
+      radius: midpointCircle.getRadius(),
+      type: type.toLowerCase(),
+    },
+    function (results, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        results.forEach((place) => {
+          const marker = new google.maps.Marker({
+            map: map,
+            position: place.geometry.location,
+            title: place.name,
+            icon: {
+              url: getMarkerColor(type), //get the custom marker image
+              scaledSize: new google.maps.Size(40, 40), //resize the marker
+            },
+          });
+
+          //InfoWindow to display details
+          const infoWindowContent = generateInfoWindowContent(place);
+          const infoWindow = new google.maps.InfoWindow({
+            content: infoWindowContent,
+          });
+
+          //event listener to show InfoWindow when the marker is hovered
+          marker.addListener("mouseover", function () {
+            infoWindow.open(map, marker);
+          });
+
+          //event listener to close InfoWindow when hover ends
+          marker.addListener("mouseout", function () {
+            infoWindow.close();
+          });
+
+          markers.push(marker);
+        });
+      } else {
+        console.error("PlacesService failed due to: " + status);
+      }
+    }
+  );
+}
+
+//generate HTML content for InfoWindow
+function generateInfoWindowContent(place) {
+  let content = `<strong>${place.name}</strong><br>`;
+
+  //add rating if available
+  if (place.rating) {
+    content += `Rating: ${place.rating} / 5<br>`;
+  }
+
+  //add photos if available
+  if (place.photos && place.photos.length > 0) {
+    content += `<img src="${place.photos[0].getUrl({ maxWidth: 100, maxHeight: 100 })}" alt="Photo of ${place.name}" style="width: 100px; height: 100px;"><br>`;
+  }
+
+  //add address (formatted address)
+  content += `Address: ${place.vicinity || "No address available"}<br>`;
+
+  return content;
+}
+
